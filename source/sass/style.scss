@@ -1,0 +1,27 @@
+// Global styles
+@import "general/variables";
+@import "general/mixins";
+@import "general/fonts";
+@import "general/normalize";
+@import "general/global";
+@import "general/visually-hidden";
+
+// components
+@import "components/preloader";
+@import "blocks/titles";
+@import "components/wrapper";
+@import "components/paragraph";
+@import "components/list";
+@import "components/italic";
+@import "components/block";
+@import "components/inner-page";
+@import "components/img";
+
+// blocks
+@import "blocks/header";
+@import "blocks/drop-block";
+@import "blocks/introduction";
+@import "blocks/about-project";
+@import "blocks/about-us";
+@import "blocks/slider";
+

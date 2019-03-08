@@ -1,0 +1,17 @@
+.list {
+  margin-top: 30px;
+
+  font-size: 18px;
+}
+
+.list__marker {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+
+  fill: $blue-color;
+}
+
+.list--vertical .list__item + .list__item {
+  margin-top: 20px;
+}
