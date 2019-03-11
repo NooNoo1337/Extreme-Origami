@@ -1,0 +1,190 @@
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timeline__header {
+  padding: 16px;
+
+  background-color: $blue-color;
+  border-radius: 6px 6px 0 0;
+
+  color: white;
+}
+
+.timeline__content-block {
+  margin-top: 25px;
+}
+
+.timeline__content {
+  position: relative;
+}
+
+.timeline__person-block:nth-of-type(1n) .timeline__content {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 100%;
+    right: auto;
+    z-index: 1;
+
+    width: 0;
+    height: 0;
+
+    border: medium solid $blue-color;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent $blue-color;
+  }
+
+  &.bounce-in {
+    animation: cd-bounce;
+    animation-duration: 0.6s;
+  }
+}
+
+.timeline__person-block:nth-of-type(2n) .timeline__content {
+  &::before {
+    content: "";
+    position: absolute;
+    left: auto;
+    right: 100%;
+    top: 22px;
+    z-index: 1;
+
+    width: 0;
+    height: 0;
+
+    border: medium solid $blue-color;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent $blue-color transparent transparent;
+  }
+
+  &.bounce-in {
+    animation: cd-bounce-inverse;
+    animation-duration: 0.6s;
+  }
+}
+
+.timeline__list {
+  font-size: 16px;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+
+/* Container around content */
+.timeline__person-block {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+
+  &:nth-of-type(2n) {
+    margin-left: auto;
+  }
+
+  &.is-hidden {
+    visibility: hidden;
+  }
+}
+
+.timeline__initials {
+  position: absolute;
+  top: 15px;
+  z-index: 2;
+
+  width: 44px;
+
+  border-radius: 50%;
+  background-color: #2797eb;
+
+  font-size: 18px;
+  text-align: center;
+  line-height: 44px;
+
+  &.bounce-in {
+    animation: bounce;
+    animation-duration: 0.6s;
+  }
+}
+
+.timeline__person-block:nth-of-type(1n) .timeline__initials {
+  right: -22px;
+}
+
+.timeline__person-block:nth-of-type(2n) .timeline__initials {
+  left: -22px;
+}
+
+
+/* The actual content */
+.timeline__person-content {
+  position: relative;
+
+  padding: 16px;
+
+  background-color: white;
+  border-radius: 0 0 6px 6px;
+}
+
+// ANIMATIONS //
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.2)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
+
+@keyframes cd-bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes cd-bounce-inverse {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

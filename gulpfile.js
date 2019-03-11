@@ -98,6 +98,7 @@ gulp.task('typography', function () {
 // minify js
 gulp.task('js', function () {
   return gulp.src(path.src.js)
+    .pipe(plumber())
     .pipe(rigger())
     .pipe(sourcemaps.init())
     .pipe(uglify())

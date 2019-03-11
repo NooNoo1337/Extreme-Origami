@@ -8,6 +8,7 @@
       id: 1,
       name: 'Andrius Vaitkus',
       about: 'Experimental Physics student, UCL.',
+      favouriteColor: '#B5DB40',
       responsibilities: [
         'Research of application of origami in Mathematics and Engineering',
         'Development of the "Angle Trisection" simulation',
@@ -21,6 +22,7 @@
       id: 2,
       name: 'Aishvarya Raj',
       about: 'Theoretical Physics Student , UCL.',
+      favouriteColor: '#9B67B2',
       responsibilities: [
         'Main editor of the report',
         'Research on Architecture and Computer Science',
@@ -44,6 +46,7 @@
     {
       id: 4,
       name: 'Jennifer Jung',
+      favouriteColor: '#F9C7D2',
       about: 'Experimental Physics Student, UCL.',
       responsibilities: [
         'Communications Officer',
@@ -57,6 +60,7 @@
       id: 5,
       name: 'Daniel Sanz',
       about: 'Affiliate Physics Student at UCL, from Spain.',
+      favouriteColor: 'rgba(207, 0, 15, 1)',
       responsibilities: [
         'Research on Mathematics',
         'Understanding the Mathematica folding code',
@@ -81,6 +85,7 @@
       id: 7,
       name: 'Qingyue Hu',
       about: 'Experimental Physics Student, UCL.',
+      favouriteColor: '#ffffff',
       responsibilities: [
         'Part of research subgroup',
         'Research on Biological and Medical Science applications of origami',
@@ -103,99 +108,125 @@
     },
   ];
 
+  const timelineContainer = document.getElementById('timeline');
 
-  renderTabs(sliderData);
-  changeSlide(document.querySelector('.slider__nav-button'));
+  function getInitials(fullName) {
+    return fullName.split(' ').map((n) => n[0]).join('');
+  }
 
-  function renderTabs(collection) {
-    const tabContainer = document.querySelector('.slider__nav');
-    const secondTabContainer = document.querySelector('.slider__nav--second');
-    let personsCounter = 1;
+  function createPersonBlock(person) {
+    const block = document.createElement('div');
+    const blockHeader = document.createElement('div');
+    const blockTitle = document.createElement('p');
+    const blockContent = document.createElement('div');
+    const personAbout = document.createElement('p');
+    const responsibilitiesList = document.createElement('ul');
+    const personInitials = document.createElement('div');
+    const contentWrapper = document.createElement('div');
+    const listPointIcon = `<svg class="list__marker" width="15" height="15"><use xlink:href="img/svg/sprite.svg#right-arrow"></use></svg>`;
 
-    tabContainer.innerHTML = '';
-    secondTabContainer.innerHTML = '';
+    block.classList.add('timeline__content');
+    contentWrapper.classList.add('timeline__person-block');
+    blockHeader.classList.add('timeline__header');
+    blockTitle.classList.add('title', 'title--h4', 'title--line');
+    blockContent.classList.add('timeline__person-content');
+    personInitials.classList.add('timeline__initials');
+    responsibilitiesList.classList.add('list', 'list--vertical', 'timeline__list');
 
-    for(const person of collection) {
+
+    personInitials.innerText = getInitials(person.name);
+    personInitials.style.backgroundColor = person.favouriteColor;
+
+    blockTitle.innerText = person.name;
+    personAbout.innerText = person.about;
+
+    person.responsibilities.forEach(responsibility => {
       const listItem = document.createElement('li');
-      const button = document.createElement('button');
 
-      button.classList.add('slider__nav-button');
-      button.setAttribute('type', 'button');
+      listItem.classList.add('list__item');
+      listItem.innerHTML = `${listPointIcon} ${responsibility}`;
 
-      button.innerHTML += `<span class="slider__counter">0${personsCounter}.</span> ${person.name}`;
-      button.setAttribute('data-id', person.id);
-      button.setAttribute('data-name', person.name);
-      button.setAttribute('data-about', person.about);
+      responsibilitiesList.appendChild(listItem);
+    });
 
-      listItem.appendChild(button);
+    blockHeader.appendChild(blockTitle);
+    block.appendChild(blockHeader);
+    blockContent.appendChild(personAbout);
+    blockContent.appendChild(responsibilitiesList);
+    block.appendChild(blockContent);
 
-      if(personsCounter <= 4) {
-        tabContainer.appendChild(listItem);
-      } else {
-        secondTabContainer.appendChild(listItem);
-      }
+    contentWrapper.appendChild(personInitials);
+    contentWrapper.appendChild(block);
 
-      personsCounter++;
-    }
+    return contentWrapper;
   }
 
-  function changeSlide(button) {
-    const personName = button.getAttribute('data-name');
-    const personAbout = button.getAttribute('data-about');
-    const personID = button.getAttribute('data-id');
+  function renderPersons(collection) {
+    collection.forEach(item => {
+      const personBlock = createPersonBlock(item);
 
-    if(+personID !== +sliderScene.getAttribute('data-slide-id')) {
-      sliderScene.setAttribute('data-slide-id', personID);
-      sliderScene.querySelector('.slider__title--name').innerText = personName;
-      sliderScene.querySelector('.slider__person-about').innerText = personAbout;
-
-      if(sliderScene.classList.contains('change-slide')) {
-        sliderScene.classList.remove('change-slide');
-        void sliderScene.offsetWidth;
-        sliderScene.classList.add('change-slide');
-      } else {
-        sliderScene.classList.add('change-slide');
-      }
-
-
-      createList(button);
-    }
+      timelineContainer.appendChild(personBlock);
+    });
   }
 
-  function createList(button) {
-    const respBlock = slider.querySelector('.slider__block--responsibilities');
-    const respList = respBlock.querySelector('.list');
-    const personResponsibilities = getResponsibilities(button, sliderData);
+  renderPersons(sliderData);
 
-    respList.innerHTML = '';
+  const timelineBlocks = document.querySelectorAll('.timeline__person-block');
 
-    for(const listItem of personResponsibilities) {
-      const listElement = document.createElement('li');
+  timelineBlocks.forEach(block => {
+    const targetPosition = {
+      top: window.pageYOffset + block.getBoundingClientRect().top,
+      left: window.pageXOffset + block.getBoundingClientRect().left,
+      right: window.pageXOffset + block.getBoundingClientRect().right,
+      bottom: window.pageYOffset + block.getBoundingClientRect().bottom
+    };
 
-      listElement.classList.add('list__item');
-      listElement.innerHTML += `<svg class="list__marker" width="15" height="15"><use xlink:href="img/svg/sprite.svg#right-arrow"></use></svg> ${listItem}`;
+    const windowPosition = {
+      top: window.pageYOffset,
+      left: window.pageXOffset,
+      right: window.pageXOffset + document.documentElement.clientWidth,
+      bottom: window.pageYOffset + document.documentElement.clientHeight
+    };
 
-      respList.appendChild(listElement);
-    }
-  }
-
-  function getResponsibilities(button, collection) {
-    const personID = +button.getAttribute('data-id');
-    let personResponsibilities;
-
-    for(const person of collection) {
-      if(person.id === personID) {
-        personResponsibilities = person.responsibilities;
-      }
-    }
-
-    return personResponsibilities;
-  }
-
-  slider.addEventListener('click', evt => {
-    if(evt.target.classList.contains('slider__nav-button')) {
-      changeSlide(evt.target);
+    if (targetPosition.bottom > windowPosition.top &&
+        targetPosition.top + block.clientHeight > windowPosition.bottom) {
+      block.classList.add('is-hidden');
     }
   });
+
+  window.addEventListener('scroll', () => {
+    timelineBlocks.forEach(block => {
+      showPersonBlock(block);
+    });
+  });
+
+  function showPersonBlock(target) {
+    const targetPosition = {
+      top: window.pageYOffset + target.getBoundingClientRect().top,
+      left: window.pageXOffset + target.getBoundingClientRect().left,
+      right: window.pageXOffset + target.getBoundingClientRect().right,
+      bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+    };
+
+    const windowPosition = {
+      top: window.pageYOffset,
+      left: window.pageXOffset,
+      right: window.pageXOffset + document.documentElement.clientWidth,
+      bottom: window.pageYOffset + document.documentElement.clientHeight
+    };
+
+    if (targetPosition.bottom > windowPosition.top &&
+      (targetPosition.top + target.clientHeight * 0.5) < windowPosition.bottom &&
+      target.classList.contains('is-hidden')) {
+
+      target.classList.remove('is-hidden');
+
+      target.querySelector('.timeline__content').classList.remove('is-hidden');
+      target.querySelector('.timeline__initials').classList.remove('is-hidden');
+
+      target.querySelector('.timeline__content').classList.add('bounce-in');
+      target.querySelector('.timeline__initials').classList.add('bounce-in');
+    }
+  }
 
 })();
