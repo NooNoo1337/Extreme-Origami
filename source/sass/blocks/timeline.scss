@@ -23,6 +23,7 @@
 }
 
 .timeline__person-block:nth-of-type(1n) .timeline__content {
+
   &::before {
     content: "";
     position: absolute;
@@ -34,9 +35,9 @@
     width: 0;
     height: 0;
 
-    border: medium solid $blue-color;
+    border: medium solid var(--theme-color);
     border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent $blue-color;
+    border-color: transparent transparent transparent var(--theme-color);
   }
 
   &.bounce-in {
@@ -57,9 +58,9 @@
     width: 0;
     height: 0;
 
-    border: medium solid $blue-color;
+    border: medium solid var(--theme-color);
     border-width: 10px 10px 10px 0;
-    border-color: transparent $blue-color transparent transparent;
+    border-color: transparent var(--theme-color) transparent transparent;
   }
 
   &.bounce-in {
@@ -114,6 +115,7 @@
   font-size: 18px;
   text-align: center;
   line-height: 44px;
+  color: white;
 
   &.bounce-in {
     animation: bounce;

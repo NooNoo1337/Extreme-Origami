@@ -1,4 +1,5 @@
 .block {
+  margin: 0 auto;
 
   &--img {
     margin-top: 30px;
@@ -14,8 +15,17 @@
     justify-content: space-between;
     max-height: 300px;
   }
+
+  &--300px {
+    display: block;
+    max-width: 300px;
+  }
 }
 
-.block--imgs-line img {
+.block--imgs-line picture {
   width: calc(50% - 20px);
+}
+
+.block--three picture {
+  width: 30%;
 }

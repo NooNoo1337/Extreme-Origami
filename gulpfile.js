@@ -199,9 +199,10 @@ gulp.task("copy", function () {
   return gulp.src([
     "source/fonts/**",
     "source/img/**",
-    "js/**",
-    'css/**',
-    'source/favicons/**',
+    "source/js/**",
+    'source/css/**',
+    'source/favicons/**/*',
+    'source/download-files/**/*',
   ], {
     base: "source"
   })

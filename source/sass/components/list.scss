@@ -12,6 +12,10 @@
   fill: $blue-color;
 }
 
+.list__item {
+  line-height: 1.9;
+}
+
 .list--vertical .list__item + .list__item {
   margin-top: 20px;
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Extreme Origami an the Science of Folding</title>
+  //= templates/styles.html
+</head>
+<body>
+
+//= templates/preloader.html
+//= templates/header.html
+
+<main role="main" class="inner-page">
+  <section>
+    <div class="wrapper">
+      <h1 class="title title--h1 title--line title--center">
+        Doubling the Cube
+      </h1>
+
+      <p class="paragraph">
+        Doubling the cube allows one to – given the length of the first cube edge – construct a second cube with double
+        the volume of the first. The new cube has sides of length ∛2 times the original length. Incidentally, this
+        construction cannot be solved using Euclidean methods. It can however be solved using paper folding demonstrated
+        below. For this demonstration, you need a square sheet of paper.
+      </p>
+
+      <p class="paragraph">
+        Step 1: <br>
+        The first step includes starting with a square paper and folding it along one of its sides into three equal
+        parts, as shown below. To make it easier, you can you can do both folds simultaneously and make sure that all
+        three parts lie on top of one another perfectly.
+      </p>
+
+      <div class="block block--img block--imgs-line block--three">
+        <picture>
+          <source type="image/webp" srcset="img/couble-doubling/cuble-doubling-1-1.webp">
+          <img src="img/couble-doubling/cuble-doubling-1-1.png" alt="picture">
+        </picture>
+
+        <picture>
+          <source type="image/webp" srcset="img/couble-doubling/cuble-doubling-1-2.webp">
+          <img src="img/couble-doubling/cuble-doubling-1-2.png" alt="picture">
+        </picture>
+
+        <picture>
+          <source type="image/webp" srcset="img/couble-doubling/cuble-doubling-1-3.webp">
+          <img src="img/couble-doubling/cuble-doubling-1-3.png" alt="picture">
+        </picture>
+      </div>
+
+      <p class="paragraph">
+        Step 2: <br>
+        This step is pretty tricky. You need to fold the paper in such a way that the bottom left corner is brought to
+        the right edge. Now look at the two crease lines created in step 1. You also need the left end point of the
+        bottom crease line to lie on the top crease line. Mark the point where the bottom left corner ended up.
+      </p>
+
+      <div class="block block--img block--imgs-line block--300px">
+        <picture>
+          <source type="image/webp" srcset="img/couble-doubling/cuble-doubling-2.webp">
+          <img src="img/couble-doubling/cuble-doubling-2.png" alt="picture">
+        </picture>
+      </div>
+
+      <p class="paragraph">
+        As a result, this new position of the bottom left corner divides the right-hand side of the square into two
+        parts, a and b, in a way that the ratio 𝑎𝑏=∛2, which is what we were looking for.
+      </p>
+
+      <div class="block block--img block--imgs-line block--300px">
+        <picture>
+          <source type="image/webp" srcset="img/couble-doubling/cuble-doubling-3.webp">
+          <img src="img/couble-doubling/cuble-doubling-3.png" alt="picture">
+        </picture>
+      </div>
+
+      <p class="paragraph">
+        If you are having trouble with this demonstration, you can see the full folding animation created in Wolfram
+        Mathematica here:
+      </p>
+
+      <a class="download-file" href="#" download="download-files/doubling-cube.nb">
+        <svg class="download-file__icon" width="30" height="30" aria-hidden="true">
+          <use xlink:href="img/svg/sprite.svg#download"></use>
+        </svg>
+
+        <span class="download-file__title">Download</span>
+      </a>
+
+    </div>
+  </section>
+</main>
+
+//= templates/scripts.html
+</body>
+</html>

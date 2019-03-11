@@ -34,6 +34,7 @@
     {
       id: 3,
       name: 'Gurprit Kaur',
+      favouriteColor: '#2B6D2B',
       about: 'Experimental Physics Student, UCL.',
       responsibilities: [
         'Research of application of origami in cosmology',
@@ -60,7 +61,7 @@
       id: 5,
       name: 'Daniel Sanz',
       about: 'Affiliate Physics Student at UCL, from Spain.',
-      favouriteColor: 'rgba(207, 0, 15, 1)',
+      favouriteColor: '#cf090f',
       responsibilities: [
         'Research on Mathematics',
         'Understanding the Mathematica folding code',
@@ -73,6 +74,7 @@
     {
       id: 6,
       name: 'Haokai Jin',
+      favouriteColor: '#1E90FF',
       about: 'Experimental Physics Student, UCL.',
       responsibilities: [
         'Research on Engineering, genetics, DNA and Self Folding Cube',
@@ -98,6 +100,7 @@
       id: 8,
       name: 'Kourosh Khodabakhsh',
       about: 'Experimental Physics Student, UCL.',
+      favouriteColor: '#6495ED',
       responsibilities: [
         'Research into applications of origami in Cosmology, Engineering, Genetics and Self Folding Cube',
         'Participation in self folding test',
@@ -128,17 +131,25 @@
     block.classList.add('timeline__content');
     contentWrapper.classList.add('timeline__person-block');
     blockHeader.classList.add('timeline__header');
-    blockTitle.classList.add('title', 'title--h4', 'title--line');
+
+    if(person.favouriteColor === undefined) {
+      person.favouriteColor = '#2797EB';
+    }
+
+    contentWrapper.style.setProperty('--theme-color', person.favouriteColor);
+
+    blockTitle.classList.add('title', 'title--h4');
     blockContent.classList.add('timeline__person-content');
     personInitials.classList.add('timeline__initials');
     responsibilitiesList.classList.add('list', 'list--vertical', 'timeline__list');
 
 
     personInitials.innerText = getInitials(person.name);
-    personInitials.style.backgroundColor = person.favouriteColor;
-
     blockTitle.innerText = person.name;
     personAbout.innerText = person.about;
+
+    blockHeader.style.backgroundColor = person.favouriteColor;
+    personInitials.style.backgroundColor = person.favouriteColor;
 
     person.responsibilities.forEach(responsibility => {
       const listItem = document.createElement('li');
