@@ -34,7 +34,7 @@
     {
       id: 3,
       name: 'Gurprit Kaur',
-      favouriteColor: '#2B6D2B',
+      favouriteColor: '#1F6066',
       about: 'Experimental Physics Student, UCL.',
       responsibilities: [
         'Research of application of origami in cosmology',
@@ -87,7 +87,7 @@
       id: 7,
       name: 'Qingyue Hu',
       about: 'Experimental Physics Student, UCL.',
-      favouriteColor: '#ffffff',
+      favouriteColor: 'rgba(189, 195, 199, 1)',
       responsibilities: [
         'Part of research subgroup',
         'Research on Biological and Medical Science applications of origami',

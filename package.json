@@ -51,5 +51,8 @@
     "run-sequence": "^2.2.1",
     "stylelint": "^9.9.0",
     "stylelint-config-htmlacademy": "^0.1.1"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.2.6"
   }
 }

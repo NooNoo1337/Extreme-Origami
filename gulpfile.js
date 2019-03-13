@@ -165,7 +165,7 @@ gulp.task('img', function () {
 // WEBP
 // make webp pictures
 gulp.task("webp", function () {
-  return gulp.src("source/img/**/*.{jpg,png,JPEG,jpeg}")
+  return gulp.src("source/img/**/*.{jpg,png,PNG,JPEG,jpeg}")
     .pipe(webp({quality: qualityOfImage}))
     .pipe(gulp.dest("build/img"));
 });
@@ -256,7 +256,7 @@ gulp.task("serve", function () {
 
   // WATCH
   // watch tasks
-  gulp.watch("source/sass/**/*.{scss,sass}", ["style"]);
+  gulp.watch("source/sass/**/*.{scss,sass,css}", ["style"]);
   gulp.watch("source/**/*.html", ["html"], ["typography"]);
   gulp.watch("source/js/**/*.js", ["js"]);
   gulp.watch("source/react/**/*.js", ["react"]);

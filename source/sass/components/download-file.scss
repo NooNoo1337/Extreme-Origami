@@ -14,9 +14,11 @@
   color: white;
   text-align: center;
 
+  outline: none;
+
   transition: background-color 0.5s linear;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #137dcc;
     transition: all .3s ease;
   }
@@ -41,14 +43,16 @@
   transform: translate3D(0, -4em, 0) scale(0);
 }
 
-.download-file:hover .download-file__icon {
+.download-file:hover .download-file__icon,
+.download-file:focus .download-file__icon {
   opacity: 1;
   visibility: visible;
 
   transform: translate3D(0, 0, 0) scale(1);
 }
 
-.download-file:hover .download-file__title {
+.download-file:hover .download-file__title,
+.download-file:focus .download-file__title {
   opacity: 0;
   visibility: hidden;
 
